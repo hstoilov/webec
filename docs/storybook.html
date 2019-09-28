@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Storybook for the Web Engineering Module</title>
+	<style>
+		html,
+		body,
+		div,
+		span,
+		applet,
+		object,
+		iframe,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p,
+		blockquote,
+		pre,
+		a,
+		abbr,
+		acronym,
+		address,
+		big,
+		cite,
+		code,
+		del,
+		dfn,
+		em,
+		img,
+		ins,
+		kbd,
+		q,
+		s,
+		samp,
+		small,
+		strike,
+		strong,
+		sub,
+		sup,
+		tt,
+		var,
+		b,
+		u,
+		i,
+		center,
+		dl,
+		dt,
+		dd,
+		ol,
+		ul,
+		li,
+		fieldset,
+		form,
+		label,
+		legend,
+		table,
+		caption,
+		tbody,
+		tfoot,
+		thead,
+		tr,
+		th,
+		td,
+		article,
+		aside,
+		canvas,
+		details,
+		embed,
+		figure,
+		figcaption,
+		footer,
+		header,
+		hgroup,
+		menu,
+		nav,
+		output,
+		ruby,
+		section,
+		summary,
+		time,
+		mark,
+		audio,
+		video {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
+
+		/* HTML5 display-role reset for older browsers */
+		article,
+		aside,
+		details,
+		figcaption,
+		figure,
+		footer,
+		header,
+		hgroup,
+		menu,
+		nav,
+		section {
+			display: block;
+		}
+
+		body {
+			line-height: 1;
+		}
+
+		ol,
+		ul {
+			list-style: none;
+		}
+
+		blockquote,
+		q {
+			quotes: none;
+		}
+
+		blockquote:before,
+		blockquote:after,
+		q:before,
+		q:after {
+			content: '';
+			content: none;
+		}
+
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		body {
+			background-color: #242f44;
+			color: white;
+			font-family: 'Oswald', sans-serif;
+		}
+
+		header {
+			text-align: center;
+			margin-top: 5px;
+			color: #8c6b48;
+			background-color: white;
+			text-align: center;
+			font-family: 'Oswald', sans-serif;
+		}
+
+		h1 {
+			font-size: 26px;
+			padding: 15px;
+			color: #8c6b48;
+			background-color: white;
+			text-align: center;
+			font-family: 'Oswald', sans-serif;
+		}
+
+		h2 {
+			font-size: 18px;
+			padding: 10px;
+			text-transform: uppercase;
+			text-align: center;
+		}
+
+		h3 {
+			font-size: 15px;
+			padding: 1px;
+			text-transform: uppercase;
+			text-align: left;
+			margin-left: 20px;
+			font-weight: 500;
+			line-height: 2.7;
+			letter-spacing: 0.8px;
+		}
+
+		th {
+			border: 2px solid #8c6b48;
+		}
+
+		table {
+			text-align: center;
+			margin: 20px auto;
+		}
+
+		section {
+			margin: 20px auto;
+		}
+
+		td {
+			border: 2px solid #8c6b48;
+			width: 300px;
+		}
+
+		footer {
+			margin-top: 50px;
+			text-align: center;
+			position: fixed;
+			width: 100%;
+			height: 50px;
+			bottom: 0px;
+			background-color: #242f44;
+			z-index: 5;
+		}
+
+		footer h3 {
+			display: inline-block;
+			font-size: 14px;
+		}
+
+		.container {
+			max-width: 940px;
+			margin: 0 auto;
+			height: 800px;
+		}
+
+		p {
+			text-align: center;
+			margin: 20px auto;
+		}
+
+		ul {
+			text-align: center;
+			margin: 20px auto;
+		}
+
+		.left {
+			width: 200px;
+		}
+
+		.middle {
+			width: 75px;
+		}
+
+		.right {
+			width: 500px;
+		}
+
+		#contextpara {
+			text-align: center;
+			margin: 20px auto;
+			margin-bottom: 60px;
+		}
+
+		#tablehead {
+			font-size: 20px;
+		}
+
+		#headerinfo{
+			font-size: 16px;
+		}
+
+		#criteria {
+			margin-bottom: 70px;
+		}
+
+		#freedays {
+			background-color: #5b5d63;
+		}
+
+		#important {
+			background-color: #b34070;
+		}
+
+		/* latin-ext */
+		@font-face {
+			font-family: 'Oswald';
+			font-style: normal;
+			font-weight: 400;
+			src: url(https://fonts.gstatic.com/s/oswald/v26/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUhiZTaR.woff2) format('woff2');
+			unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+		}
+
+		/* latin */
+		@font-face {
+			font-family: 'Oswald';
+			font-style: normal;
+			font-weight: 400;
+			src: url(https://fonts.gstatic.com/s/oswald/v26/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUZiZQ.woff2) format('woff2');
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		
+	</header>
+	<main>
+		<section id="context">
+			<h1 id="headerinfo"><dfn title="Drehbuch">Storybook</dfn> for the Web Engineering Module</h1>
+			<h1>Module delivery mode</h1>
+			<p id="contextpara">This installment of the <dfn title="WebEngineering">webeC</dfn> module is
+				delivered in the spring semester of 2019.
+			</p>
+		</section>
+		<section id="content">
+			<h1>Delivery dates and examination details</h1>
+			<article>
+				<h2>Overview</h2>
+				<table>
+					<thead>
+						<tr>
+							<th colspan=3>
+								<h1 id="tablehead">Delivery dates</h1>
+							</th>
+						</tr>
+						<tr>
+							<th>
+								<h2>Date</h2>
+							</th>
+							<th>
+								<h2>#</h2>
+							</th>
+							<th>
+								<h2>Topic</h2>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="left">
+								<h3>Mo, 16.09.2019</h3>
+							</td>
+							<td class="middle">1</td>
+							<td class="right">
+								<h3>HTML</h3>
+							</td>
+						</tr>
+						<tr>
+							<td class="left">
+								<h3>Mo, 23.09.2019</h3>
+							</td>
+							<td class="middle">2</td>
+							<td class="right">
+								<h3>CSS</h3>
+							</td>
+						</tr>
+						<tr>
+							<td class="left">
+								<h3>Mo, 30.09.2019</h3>
+							</td>
+							<td class="middle">3</td>
+							<td class="right">
+								<h3>Grails, Web, MVC</h3>
+							</td>
+						</tr>
+						<tr>
+							<td class="left">
+								<h3>Mo, 07.10.2019></h3>
+							</td>
+							<td class="middle">4</td>
+							<td class="right">
+								<h3>GSP, Template, Taglib, Layout</h3>
+							</td>
+						</tr>
+						<tr>
+							<td class="left">
+								<h3>Mo, 14.10.2019</h3>
+							</td>
+							<td class="middle">5</td>
+							<td class="right">
+								<h3>Javascript</h3>
+							</td>
+						</tr>
+						<tr>
+							<td class="left">
+								<h3>Mo, 21.10.2019</h3>
+							</td>
+							<td class="middle">6</td>
+							<td class="right">
+								<h3>Consolidation training, Testing</h3>
+							</td>
+						</tr>
+						<tr>
+							<td class="left">
+								<h3>Mo, 28.10.2019</h3>
+							</td>
+							<td class="middle">7</td>
+							<td class="right">
+								<h3>Persistence, DB-Access (GORM)</h3>
+							</td>
+						</tr>
+						<tr>
+							<td class="left">
+								<h3>Mo, 04.11.2019</h3>
+							</td>
+							<td class="middle">8</td>
+							<td class="right">
+								<h3>REST, Services</h3>
+							</td>
+						</tr>
+						<tr>
+							<td class="left">
+								<h3>Mo, 11.11.2019</h3>
+							</td>
+							<td class="middle">9</td>
+							<td class="right">
+								<h3>Role-based Security</h3>
+							</td>
+						</tr>
+						<tr id="important">
+							<td class="left">
+								<h3>Mo, 18.11.2019</h3>
+							</td>
+							<td class="middle">10</td>
+							<td class="right">
+								<h3>Übungsvorbereitung ** Anwesenheitspflicht **</h3>
+							</td>
+						</tr>
+						<tr id="freedays">
+							<td class="left">
+								<h3>Mo, 25.11.2019</h3>
+							</td>
+							<td class="middle">-</td>
+							<td class="right">
+								<h3>Frei (Projektwoche)</h3>
+							</td>
+						</tr>
+						<tr>
+							<td class="left">
+								<h3>Mo, 02.12.2019</h3>
+							</td>
+							<td class="middle">11</td>
+							<td class="right">
+								<h3>Übungsanlass</h3>
+							</td>
+						</tr>
+						<tr>
+							<td class="left">
+								<h3>Mo, 09.12.2019</h3>
+							</td>
+							<td class="middle">12</td>
+							<td class="right">
+								<h3>Responsive / Mobile Web</h3>
+							</td>
+						</tr>
+						<tr id="important">
+							<td class="left">
+								<h3>Mo, 16.12.2019</h3>
+							</td>
+							<td class="middle">13</td>
+							<td class="right">
+								<h3>Weihnachtsvorlesung, ** Übungsabgabe **</h3>
+							</td>
+						</tr>
+						<tr id="freedays"> 
+							<td class="left">
+								<h3>Mo, 23.12.2019</h3>
+							</td>
+							<td class="middle">-</td>
+							<td class="right">
+								<h3>Weihnachtsferien</h3>
+							</td>
+						</tr>
+						<tr id="freedays">
+							<td class="left">
+								<h3>Mo, 30.12.2019</h3>
+							</td>
+							<td class="middle">-</td>
+							<td class="right">
+								<h3>Weihnachtsferien</h3>
+							</td>
+						</tr>
+						<tr>
+							<td class="left">
+								<h3>Mo, 06.01.2020</h3>
+							</td>
+							<td class="middle">14</td>
+							<td class="right">
+								<h3>Deployment</h3>
+							</td>
+						</tr>
+						<tr>
+							<td class="left">
+								<h3>Mo, 13.01.2020</h3>
+							</td>
+							<td class="middle">15</td>
+							<td class="right">
+								<h3>Prüfungsvorbereitung</h3>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+
+
+						<tr>
+							<th colspan=3>
+								<h2>MSP date to be announced</h2>
+							</th>
+						</tr>
+
+					</tfoot>
+				</table>
+			</article>
+			<article>
+				<h2>Total Effort</h2>
+				<p>Classroom lectures add up to <code>14 * 3h = 42h</code>.</p>
+				<p>Prework and afterwork, including homework adds up to <code>14 * 1h = 14h</code>.</p>
+				<p>The exercise for the continuous assessment grade takes <code>4 * 6h = 24h</code>.</p>
+				<p>Preparation for the final exam will take approximately <code>8h</code>.</p>
+				<p>Writing the final exam takes <code>2h</code>.</p>
+				<p>This makes a total of <code>90h</code>.</p>
+			</article>
+			<article id="criteria">
+				<h2>Passing criteria</h2>
+				<ul>
+					<li>You have to attend the exercise preparation event.</li>
+					<li>You have to do the exercise and deliver before the deadline.</li>
+					<li>You have to attend the <dfn title="Modulschlussprüfung">final exam (MSP)</dfn>.</li>
+				</ul>
+				<p> Your exercise will determine your <abbr title="Erfahrungsnote">continuous assessment grade
+						(EN)</abbr>. </p>
+				<p> EN and MSP together make your final grade. </p>
+			</article>
+		</section>
+	</main>
+	<footer>
+		<address>Dierk König, 5.2B16, mailto:dierk.koenig@fhnw.ch</address>
+		<address>Christian Ribeaud, mailto:christian.ribeaud@fhnw.ch</address>
+	</footer>
+</body>
+
+</html>
